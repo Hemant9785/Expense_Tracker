@@ -1,11 +1,20 @@
 import React from "react";
 
-const Transaction = () => {
+const Transaction = ({ Transaction, dltTransaction }) => {
+  const sign = Transaction.amt > 0 ? "+" : "-";
   return (
-    <div>
-      <div>Cash</div>
-      <div>+500</div>
-    </div>
+    <li className={`${sign === "+" ? "plus" : "minus"}`}>
+      {Transaction.text}
+      <span>
+        {sign}${Math.abs(Transaction.amt).toFixed(2)}
+      </span>
+      <button
+        className="delete-btn"
+        onClick={() => dltTransaction(Transaction.id)}
+      >
+        X
+      </button>
+    </li>
   );
 };
 
